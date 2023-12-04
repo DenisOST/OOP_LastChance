@@ -11,6 +11,25 @@ public:
 	string Name = "";
 	ILesson * CurrentLesson;
 
+	// Внутренний класс итератора
+	class FeatureIterator 
+	{
+	public:
+		FeatureIterator(vector<ICharacterFeatures*>& features) : features(features), index(0) {}
+
+		bool hasNext() const {
+			return index < features.size();
+		}
+
+		ICharacterFeatures* next() {
+			return features[index++];
+		}
+
+	private:
+		vector<ICharacterFeatures*>& features;
+		size_t index;
+	};
+
 	Child()
 	{
 		CurrentLesson = NULL;
@@ -55,6 +74,11 @@ public:
 	void CompleteLesson()
 	{
 		CurrentLesson->doLesson();
+	}
+
+	// Методы итератора
+	FeatureIterator getFeatureIterator() {
+		return FeatureIterator(addFeatures);
 	}
 };
 

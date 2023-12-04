@@ -1,25 +1,19 @@
 ﻿#include "Child.h"
 
 void TestCompositePattern() {
-    // Создаем простые уроки
-    ILesson* mathLesson = new MathLesson();
-    ILesson* bioLesson = new BioLesson();
+    Child child;
 
-    // Создаем композит для группировки уроков
-    CompositeLesson* compositeMathLesson = new CompositeLesson();
-    compositeMathLesson->add(new SimpleLesson(mathLesson));
-    compositeMathLesson->add(new SimpleLesson(bioLesson));
+    // Добавляем черты к ребенку
+    child.addFeature(new Evil());
+    child.addFeature(new Kind());
+    child.addFeature(new High());
 
-    // Создаем еще один простой урок
-    ILesson* engLesson = new EngLesson();
-
-    // Создаем главный композит, который содержит все уроки
-    CompositeLesson* mainLesson = new CompositeLesson();
-    mainLesson->add(compositeMathLesson);
-    mainLesson->add(new SimpleLesson(engLesson));
-
-    // Выводим всю иерархию уроков
-    mainLesson->display();
+    // Итерация по чертам
+    Child::FeatureIterator iterator = child.getFeatureIterator();
+    while (iterator.hasNext()) {
+        ICharacterFeatures* feature = iterator.next();
+        feature->features();
+    }
 }
 
 int main()
