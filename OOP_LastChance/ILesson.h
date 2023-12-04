@@ -22,7 +22,7 @@ public:
             cout << "Div by zero!\n";
         }
         else {
-            cout << "Div: " << a * b << endl;
+            cout << "Div: " << a / b << endl;
         }
     }
     MathLesson(int inA, int inB) { a = inA;         b = inB; }
@@ -46,3 +46,38 @@ public:
     ~ProxyMathLesson() { delete prox; }
 };
 
+//=======================
+
+//  У нас есть новый класс с другим интерфейсом
+class NewMathLesson {
+public:
+    void performAddition() { cout << "Сработал адаптер на сложение" << endl; }
+    void performSubtraction() { cout << "Сработал адаптер на вычитание" << endl; }
+    void performMultiplication() { cout << "Сработал адаптер на умножение" << endl; }
+    void performDivision() { cout << "Сработал адаптер на деление" << endl; }
+};
+
+// Класс-адаптер для адаптации NewMathLesson под интерфейс ILesson
+class AdapterNewMathLesson : public ILesson {
+private:
+    NewMathLesson* newMathLesson;
+
+public:
+    AdapterNewMathLesson(NewMathLesson* lesson) : newMathLesson(lesson) {}
+
+    virtual void sum() override {
+        newMathLesson->performAddition();
+    }
+
+    virtual void sub() override {
+        newMathLesson->performSubtraction();
+    }
+
+    virtual void mult() override {
+        newMathLesson->performMultiplication();
+    }
+
+    virtual void div() override {
+        newMathLesson->performDivision();
+    }
+};

@@ -26,4 +26,3 @@ class IMultiplyAction { //умножать
 public:
 	virtual void multiply() = 0; // интерфейс не имеет реализации
 };
-
