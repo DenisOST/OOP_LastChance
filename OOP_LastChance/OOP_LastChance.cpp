@@ -14,8 +14,16 @@ void TestDelegationAndProxy()
     CanNotMultiply* mn = new CanNotMultiply();
 
     ILesson* first = new MathLesson(6, 0);
-    NewMathLesson* newLesson = new NewMathLesson();
-    ILesson* adaptedLesson = new AdapterNewMathLesson(newLesson);
+    // Использование адаптера: 
+    // Создаем объект класса PhisicLesson с двумя вопросами 
+    PhisicLesson* pl = new PhisicLesson("Сила тока" , "Напряжение");
+
+    // Создаем объект класса-адаптера, передавая ему указатель на объект класса PhisicLesson
+    AdapterMathToPhisicLesson* adapter = new AdapterMathToPhisicLesson(pl);
+
+    // Теперь мы можем использовать объект класса-адаптера как объект класса ILesson
+    adapter->excercise(); 
+    // выведет “Сила тока и Напряжение найти произведение!”
 
     Evil* evil = new Evil();
     Kind* kind = new Kind();
@@ -36,7 +44,7 @@ void TestDelegationAndProxy()
 
     PS3->addFeature(evil);
     PS3->addFeature(low);
-    cout << "Илюха Жопич:" << endl;
+    cout << "Сергей Масло:" << endl;
     PS3->DisplayFeatures();
     PS3->SetTask(first);
     PS3->CompleteLesson();
@@ -45,7 +53,7 @@ void TestDelegationAndProxy()
     OS1.addFeature(high);
     cout << "Михаил Черепной:" << endl;
     OS1.DisplayFeatures();
-    OS1.SetTask(adaptedLesson);
+    OS1.SetTask(adapter);
     OS1.CompleteLesson();
 }
 
@@ -78,5 +86,5 @@ int main()
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
 
-    TestDecorator();
+    TestDelegationAndProxy();
 }
