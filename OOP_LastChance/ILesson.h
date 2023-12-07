@@ -4,27 +4,15 @@
 class ILesson
 {
 public:
-    virtual void sum() = 0;
-    virtual void sub() = 0;
-    virtual void mult() = 0;
-    virtual void div() = 0;
+    virtual void doMath() = 0;
 };
 
 class MathLesson : public ILesson {
     //  настоящий класс для обработки данных
 public:
     int a, b;
-    virtual void sum() { cout << "Sum: " << a + b << endl; }
-    virtual void sub() { cout << "Sub: " << a - b << endl; }
-    virtual void mult() { cout << "Mult: " << a * b << endl; }
-    virtual void div() {
-        if (b == 0) {
-            cout << "Div by zero!\n";
-        }
-        else {
-            cout << "Div: " << a * b << endl;
-        }
-    }
+    virtual void doMath() { cout << "Мы выполняем арифметические операции с заданными числами... " << endl; }
+
     MathLesson(int inA, int inB) { a = inA;         b = inB; }
 };
 
@@ -34,14 +22,11 @@ private:
     void log() { cout << "a=" << prox->a << ", b=" << prox->b << endl; }
 
 public:
-    virtual void sum() { log();         prox->sum(); }
-    virtual void sub() { log();         prox->sub(); }
-    virtual void mult() { log();         prox->mult(); }
-    virtual void div() { cout << "No div!" << endl; }
+    virtual void doMath() { log();         prox->doMath(); }
 
     ProxyMathLesson(int inA, int inB) {
         prox = new MathLesson(inA, inB);
-        // здесь Proxy создает реальный объект М1
+        // здесь Proxy создает реальный объект 
     }
     ~ProxyMathLesson() { delete prox; }
 };

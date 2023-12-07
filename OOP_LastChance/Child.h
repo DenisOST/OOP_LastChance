@@ -54,10 +54,7 @@ public:
 
 	void CompleteLesson()
 	{
-		CurrentLesson->sum();
-		CurrentLesson->sub();
-		CurrentLesson->mult();
-		CurrentLesson->div();
+		CurrentLesson->doMath();
 	}
 };
 
