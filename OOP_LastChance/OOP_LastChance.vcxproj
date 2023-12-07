@@ -143,9 +143,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Behaviour.h" />
-    <ClInclude Include="Bridge.h" />
     <ClInclude Include="CharacterFeatures.h" />
     <ClInclude Include="Child.h" />
+    <ClInclude Include="Flyweight.h" />
     <ClInclude Include="ILesson.h" />
     <ClInclude Include="Skills.h" />
   </ItemGroup>
