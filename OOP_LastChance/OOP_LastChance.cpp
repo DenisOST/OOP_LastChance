@@ -5,17 +5,24 @@ void TestCompositePattern() {
     ILesson* mathLesson = new MathLesson();
     ILesson* bioLesson = new BioLesson();
 
+    cout << "Объединение двух простых уроков в композит:" << endl;
+
     // Создаем композит для группировки уроков
-    CompositeLesson* compositeMathLesson = new CompositeLesson();
-    compositeMathLesson->add(new SimpleLesson(mathLesson));
-    compositeMathLesson->add(new SimpleLesson(bioLesson));
+    CompositeLesson* compositeMathAndBioLesson = new CompositeLesson();
+    compositeMathAndBioLesson->add(new SimpleLesson(mathLesson));
+    compositeMathAndBioLesson->add(new SimpleLesson(bioLesson));
+    compositeMathAndBioLesson->display();
+
+    cout << "===============" << endl;
 
     // Создаем еще один простой урок
     ILesson* engLesson = new EngLesson();
 
+    cout << "Объединение простого урока и композита в главный композит:" << endl;
+
     // Создаем главный композит, который содержит все уроки
     CompositeLesson* mainLesson = new CompositeLesson();
-    mainLesson->add(compositeMathLesson);
+    mainLesson->add(compositeMathAndBioLesson);
     mainLesson->add(new SimpleLesson(engLesson));
 
     // Выводим всю иерархию уроков

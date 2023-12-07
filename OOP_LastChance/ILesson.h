@@ -65,7 +65,7 @@ public:
 // CompositeLesson.h
 class CompositeLesson : public ILessonComponent {
 private:
-    std::vector<ILessonComponent*> components;
+    vector<ILessonComponent*> components;
 
 public:
     void display() override {
