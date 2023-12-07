@@ -19,7 +19,6 @@ void TestBridgePattern() {
     delete evil;
     delete countingAction;
     delete characterFeatures;
-
 }
 
 int main()

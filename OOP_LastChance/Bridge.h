@@ -6,7 +6,7 @@ using namespace std;
 
 class CopyBook { // Интерфейс реализации
 public:
-	virtual void WriteText(const string& str) = 0;
+	virtual void WriteTextList(const string& str) = 0;
 	virtual ~CopyBook() {};
 };
 class Abstraction { // Абстракция
@@ -20,7 +20,7 @@ public:
 class Text : public Abstraction {//Вывод в формате текста
 public:
 	virtual void WriteYourText(const string& str) {
-		impl->WriteText(str);
+		impl->WriteTextList(str);
 	}
 	Text(CopyBook* inImpl) : Abstraction(inImpl) {}
 	~Text() {}
@@ -33,7 +33,7 @@ public:
 			cout << "_";
 		}
 		cout << endl;
-		impl->WriteText("|" + str + "|");
+		impl->WriteTextList("|" + str + "|");
 		cout << endl;
 		cout << "|";
 		for (int i = 0; i < str.size(); i++) {
@@ -46,7 +46,7 @@ public:
 };
 class ForTitleList : public CopyBook { // конкретная реализация для титульного листа
 public:
-	virtual void WriteText(const string& str) {
+	virtual void WriteTextList(const string& str) {
 		for (int i = 0; i < str.size(); i++) {
 			char ch = toupper(str[i]);
 			cout << ch;
@@ -56,7 +56,7 @@ public:
 };
 class ForSecondList : public CopyBook { // конкретная реализация для листов внутри
 public:
-	virtual void WriteText(const string& str) {
+	virtual void WriteTextList(const string& str) {
 		cout << str;
 	}
 	~ForSecondList() {}
