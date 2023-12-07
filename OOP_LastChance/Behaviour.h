@@ -4,11 +4,11 @@
 //Считаем
 class CanCounting : public ICountingAction {	// класс поведения для детей, которые умеют считать
 public:
-	void counting() { cout << "Я умею считать!" << endl; }
+	void counting() override { cout << "Я умею считать!" << endl; }
 };
 class CanNotCounting : public ICountingAction {	// класс поведения для детей, которые не умеют считать
 public:
-	void counting() { cout << "Я не умею считать..." << endl; }
+	void counting() override { cout << "Я не умею считать..." << endl; }
 };
 
 // Пишем

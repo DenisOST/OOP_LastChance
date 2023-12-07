@@ -11,25 +11,6 @@ public:
 	string Name = "";
 	ILesson * CurrentLesson;
 
-	// Внутренний класс итератора
-	class FeatureIterator 
-	{
-	public:
-		FeatureIterator(vector<ICharacterFeatures*>& features) : features(features), index(0) {}
-
-		bool hasNext() const {
-			return index < features.size();
-		}
-
-		ICharacterFeatures* next() {
-			return features[index++];
-		}
-
-	private:
-		vector<ICharacterFeatures*>& features;
-		size_t index;
-	};
-
 	Child()
 	{
 		CurrentLesson = NULL;
@@ -76,10 +57,6 @@ public:
 		CurrentLesson->doLesson();
 	}
 
-	// Методы итератора
-	FeatureIterator getFeatureIterator() {
-		return FeatureIterator(addFeatures);
-	}
 };
 
 class Preschooler : public Child {
@@ -136,3 +113,43 @@ public:
 	}
 };
 
+class ChildAction {
+protected:
+	ICountingAction* countingAction;
+
+public:
+	ChildAction(ICountingAction* counting) : countingAction(counting) {}
+
+	virtual void performAction() = 0;
+};
+
+// Реализация абстракции - действие по счету
+class CountingChildAction : public ChildAction {
+public:
+	CountingChildAction(ICountingAction* counting) : ChildAction(counting) {}
+
+	void performAction() override {
+		countingAction->counting();
+	}
+};
+
+// Абстракция черт детей
+class ChildFeatures {
+protected:
+	ICharacterFeatures* characterFeatures;
+
+public:
+	ChildFeatures(ICharacterFeatures* features) : characterFeatures(features) {}
+
+	virtual void displayFeatures() = 0;
+};
+
+// Реализация абстракции - черта ребенка
+class CharacterChildFeatures : public ChildFeatures {
+public:
+	CharacterChildFeatures(ICharacterFeatures* features) : ChildFeatures(features) {}
+
+	void displayFeatures() override {
+		cout << "Это: "; characterFeatures->features();
+	}
+};
