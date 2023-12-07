@@ -30,6 +30,11 @@ public:
 		size_t index;
 	};
 
+	// Методы итератора
+	FeatureIterator getFeatureIterator() {
+		return FeatureIterator(addFeatures);
+	}
+
 	Child()
 	{
 		CurrentLesson = NULL;
@@ -74,11 +79,6 @@ public:
 	void CompleteLesson()
 	{
 		CurrentLesson->doLesson();
-	}
-
-	// Методы итератора
-	FeatureIterator getFeatureIterator() {
-		return FeatureIterator(addFeatures);
 	}
 };
 
