@@ -6,7 +6,7 @@
 #include "windows.h"
 
 using namespace std;
-class IRoom { // интерфейс одного пункта меню
+class IRoom { // интерфейс одной комнаты
 public:
 	virtual string getDescription() = 0;
 	virtual float getSquare() = 0;
