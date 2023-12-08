@@ -1,41 +1,54 @@
 #include <iostream>
 
-using namespace std;
-
-// Класс "Студент"
-class Student {
+// Интерфейс для школьных кабинетов
+class SchoolRoom {
 public:
-    void addStudentInfo() {
-        cout << "\tДобавление информации об ученике" << endl;
+    virtual void accept(class Visitor& visitor) = 0;
+};
+
+// Конкретный класс для математического кабинета
+class MathRoom : public SchoolRoom {
+public:
+    void accept(class Visitor& visitor) override;
+};
+
+// Конкретный класс для языкового кабинета
+class LanguageRoom : public SchoolRoom {
+public:
+    void accept(class Visitor& visitor) override;
+};
+
+// Конкретный класс для физического кабинета
+class PhysicsRoom : public SchoolRoom {
+public:
+    void accept(class Visitor& visitor) override;
+};
+
+// Класс для ученика, реализующий интерфейс посетителя
+class Visitor {
+public:
+    void visit(MathRoom& room) {
+        std::cout << "Ученик посещает кабинет математики" << std::endl;
     }
 
-    void getStudentInfo() {
-        cout << "\tПолучение информации об ученике" << endl;
+    void visit(LanguageRoom& room) {
+        std::cout << "Ученик посещает кабинет русского языка" << std::endl;
     }
 
-    void removeStudentInfo() {
-        cout << "\tУдаление информации об ученике" << endl;
-    }
-
-    void updateStudentInfo() {
-        cout << "\tОбновление информации об ученике" << endl;
+    void visit(PhysicsRoom& room) {
+        std::cout << "Ученик посещает кабинет физики" << std::endl;
     }
 };
 
-// Класс "Промежуточное управление учеником"
-class StudentIndirection {
-public:
-    void manageStudent(Student* student) {
-        student_ = student;
-        cout << "Управление жизненным циклом ученика" << endl;
-    }
+// Реализация методов accept для каждого конкретного кабинета
+void MathRoom::accept(Visitor& visitor) {
+    visitor.visit(*this);
+}
 
-    ~StudentIndirection() {
-        delete student_;
-        cout << "Ученик удален" << endl;
-    }
+void LanguageRoom::accept(Visitor& visitor) {
+    visitor.visit(*this);
+}
 
-private:
-    Student* student_;
-};
-
+void PhysicsRoom::accept(Visitor& visitor) {
+    visitor.visit(*this);
+}
