@@ -32,6 +32,7 @@ public:
 		this->addReading();
 		this->addWriting();
 		cout << Name << endl;
+		cout << endl;
 	}
 
 	void DisplayFeatures() {

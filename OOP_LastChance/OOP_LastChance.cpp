@@ -21,7 +21,7 @@ void TestDelegationAndProxy()
     Low* low = new Low();
 
     Preschooler PS1, PS2;
-    Preschooler* PS3 = new Preschooler(c, w, r, m, "Илюха Жопич");
+    Preschooler* PS3 = new Preschooler(c, w, r, m, "Илюха Масло");
     PS1.DisplaySkills();
     PS2.DisplaySkills();
     PS3->DisplaySkills();
