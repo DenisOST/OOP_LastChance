@@ -1,7 +1,7 @@
 ﻿#include "Child.h"
 #include "IRoom.h"
 
-void TestDelegationAndProxy()
+void TestAdapter()
 {
     ILesson* first = new MathLesson(12, 6);
     // Использование адаптера: 
@@ -58,5 +58,5 @@ int main()
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
 
-    TestDelegationAndProxy();
+    TestAdapter();
 }
