@@ -146,6 +146,7 @@
     <ClInclude Include="CharacterFeatures.h" />
     <ClInclude Include="Child.h" />
     <ClInclude Include="ILesson.h" />
+    <ClInclude Include="Indirection.h" />
     <ClInclude Include="IRoom.h" />
     <ClInclude Include="Skills.h" />
   </ItemGroup>
